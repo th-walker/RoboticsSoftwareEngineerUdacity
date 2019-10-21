@@ -143,12 +143,10 @@ include_directories(
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
- add_dependencies(ball_chaser drive_bot_generate_messages_cpp)
+ add_dependencies(drive_bot drive_bot_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
- target_link_libraries(ball_chaser
-   ${catkin_LIBRARIES}
- )
+ target_link_libraries(drive_bot ${catkin_LIBRARIES})
 
 #############
 ## Install ##
