@@ -39,6 +39,7 @@ void process_image_callback(const sensor_msgs::Image img)
                 // pixel left of image
                 if (img.step[j] <= img.step/3) 
                 {
+                    ROS_INFO_STREAM("Move robot left");
                     // call drive_bot function and pass velocities
                     drive_bot(0.0, 5.0);
                 }
@@ -46,6 +47,7 @@ void process_image_callback(const sensor_msgs::Image img)
                 // pixel mid of image
                 else if (img.step[j] <= 2*img.step / 3) 
                 {
+                    ROS_INFO_STREAM("Move robot forward");
                     // call drive_bot function and pass velocities
                     drive_bot(5.0,0.0);
                 }
@@ -53,6 +55,7 @@ void process_image_callback(const sensor_msgs::Image img)
                 // pixel right of image
                 else  
                 {
+                    ROS_INFO_STREAM("Move robot right");
                     // call drive_bot function and pass velocities
                     drive_bot(0.0, -5.0);
                 }
