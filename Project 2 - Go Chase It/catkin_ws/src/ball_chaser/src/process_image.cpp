@@ -29,9 +29,9 @@ void process_image_callback(const sensor_msgs::Image img)
     // Request a stop when there's no white ball seen by the camera
 
     // Loop through each pixel in image and check if there is a bright white one
-    for (int i = 0: i < img.height; i++)
+    for (int i = 0; i < img.height; i++)
     {
-        for (int j = 0: j < img.step; j++)
+        for (int j = 0; j < img.step; j++)
         {
             // Identify if the pixel falls in the left, mid, or right side of image
             if (img.data[j] == img.data[white_pixel])
@@ -49,7 +49,7 @@ void process_image_callback(const sensor_msgs::Image img)
                 {
                     ROS_INFO_STREAM("Move robot forward");
                     // call drive_bot function and pass velocities
-                    drive_bot(5.0,0.0);
+                    drive_bot(5.0, 0.0);
                 }
 
                 // pixel right of image
@@ -61,7 +61,7 @@ void process_image_callback(const sensor_msgs::Image img)
                 }
             }
             // Request a stop when there is no white ball seen by the camera
-            drive_bot(0.0, 0.0)
+            drive_bot(0.0, 0.0);
         
         }
     }
