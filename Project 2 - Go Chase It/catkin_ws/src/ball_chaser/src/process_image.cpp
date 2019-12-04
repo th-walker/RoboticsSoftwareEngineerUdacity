@@ -32,34 +32,38 @@ void process_image_callback(const sensor_msgs::Image img)
     // Request a stop when there's no white ball seen by the camera
 
     // Loop through each pixel in image and check if there is a bright white one
-    for (int i = 0: i < img.height * img.step; i++)
+    for (int i = 0: i < img.height; i++)
     {
-        // Identify if the pixel falls in the left, mid, or right side of image
-        if (img.data[i] == img.data[white_pixel])
+        for (int j = 0: j < img.step; j++)
         {
-            // pixel left of image
-            if (img.height[i] <= (1/3)*img.height) 
+            // Identify if the pixel falls in the left, mid, or right side of image
+            if (img.data[j] == img.data[white_pixel])
             {
-                move_left = 1;
-                // call drive_bot function
-            }
+                // pixel left of image
+                if (img.step[j] <= img.step/3) 
+                {
+                    move_left = 1;
+                    // call drive_bot function and pass velocities
+                }
 
-            // pixel mid of image
-            if ((1/3)*img.height < img.height[i] <= (2/3)*img.height) 
-            {
-                move_mid = 1;
-                // call drive_bot function
-            }
+                // pixel mid of image
+                else if (img.step[j] <= 2*img.step / 3) 
+                {
+                    move_mid = 1;
+                    // call drive_bot function and pass velocities
+                }
 
-            // pixel right of image
-            if ((2/3)*img.height < img.height[i]) 
-            {
-                move_right = 1;
-                // call drive_bot function
+                // pixel right of image
+                else  
+                {
+                    move_right = 1;
+                    // call drive_bot function and pass velocities
+                }
             }
+        
         }
-        // Request a stop when there is no white ball seen by the camera
     }
+    // Request a stop when there is no white ball seen by the camera
 
 }
 
