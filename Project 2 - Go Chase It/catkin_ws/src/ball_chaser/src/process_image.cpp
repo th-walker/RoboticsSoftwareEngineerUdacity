@@ -40,27 +40,29 @@ void process_image_callback(const sensor_msgs::Image img)
                 if (img.step[j] <= img.step/3) 
                 {
                     // call drive_bot function and pass velocities
-                    drive_bot(0, 5);
+                    drive_bot(0.0, 5.0);
                 }
 
                 // pixel mid of image
                 else if (img.step[j] <= 2*img.step / 3) 
                 {
                     // call drive_bot function and pass velocities
-                    drive_bot(5,0);
+                    drive_bot(5.0,0.0);
                 }
 
                 // pixel right of image
                 else  
                 {
                     // call drive_bot function and pass velocities
-                    drive_bot(0, -5);
+                    drive_bot(0.0, -5.0);
                 }
             }
+            // Request a stop when there is no white ball seen by the camera
+            drive_bot(0.0, 0.0)
         
         }
     }
-    // Request a stop when there is no white ball seen by the camera
+    
 
 }
 
