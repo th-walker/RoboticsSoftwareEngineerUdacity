@@ -22,9 +22,6 @@ void process_image_callback(const sensor_msgs::Image img)
 {
 
     int white_pixel = 255;
-    int move_left = 0;
-    int move_mid = 0;
-    int move_right = 0;
 
     // TODO: Loop through each pixel in the image and check if there's a bright white one
     // Then, identify if this pixel falls in the left, mid, or right side of the image
@@ -42,22 +39,22 @@ void process_image_callback(const sensor_msgs::Image img)
                 // pixel left of image
                 if (img.step[j] <= img.step/3) 
                 {
-                    move_left = 1;
                     // call drive_bot function and pass velocities
+                    drive_bot(0, 5);
                 }
 
                 // pixel mid of image
                 else if (img.step[j] <= 2*img.step / 3) 
                 {
-                    move_mid = 1;
                     // call drive_bot function and pass velocities
+                    drive_bot(5,0);
                 }
 
                 // pixel right of image
                 else  
                 {
-                    move_right = 1;
                     // call drive_bot function and pass velocities
+                    drive_bot(0, -5);
                 }
             }
         
