@@ -6,7 +6,7 @@
 ros::ServiceClient client;
 
 // This function calls the command_robot service to drive the robot in the specified direction
-void drive_robot(float lin_x, float ang_z)
+void drive_bot(float lin_x, float ang_z)
 {
     // TODO: Request a service and pass the velocities to it to drive the robot
     ROS_INFO_STREAM("Passing velocities to drive robot");
@@ -37,7 +37,7 @@ void process_image_callback(const sensor_msgs::Image img)
             {
                 ROS_INFO_STREAM("Move robot left");
                 // call drive_bot function and pass velocities
-                drive_robot(0, 5);
+                drive_bot(0, 5);
             }
 
             // pixel mid of image
@@ -45,7 +45,7 @@ void process_image_callback(const sensor_msgs::Image img)
             {
                 ROS_INFO_STREAM("Move robot forward");
                 // call drive_bot function and pass velocities
-                drive_robot(5, 0);
+                drive_bot(5, 0);
             }
 
             // pixel right of image
@@ -53,7 +53,7 @@ void process_image_callback(const sensor_msgs::Image img)
             {
                 ROS_INFO_STREAM("Move robot right");
                 // call drive_bot function and pass velocities
-                drive_robot(0, -5);
+                drive_bot(0, -5);
             }
 
             else
@@ -64,7 +64,7 @@ void process_image_callback(const sensor_msgs::Image img)
         }
         // Request a stop when there is no white ball seen by the camera
         ROS_INFO_STREAM("Stop robot");
-        drive_robot(0, 0);
+        drive_bot(0, 0);
     }
     
 
