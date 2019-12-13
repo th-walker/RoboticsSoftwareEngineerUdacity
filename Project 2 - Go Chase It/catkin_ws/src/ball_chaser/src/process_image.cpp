@@ -25,7 +25,7 @@ void process_image_callback(const sensor_msgs::Image img)
     int img_left = img.step/3;
     int img_mid = 2*img.step / 3;
 
-    for (int i = 0; i < img.height * img.step; i++)
+    for (int i = 0; i < img.height * img_left; i++)
     {
         // Identify if the pixel falls in the left, mid, or right side of image
         if (img.data[i] == img.data[white_pixel])
@@ -39,6 +39,22 @@ void process_image_callback(const sensor_msgs::Image img)
                 // call drive_bot function and pass velocities
                 drive_bot(0, 5);
             }
+        }
+
+        else 
+        {
+            // Request a stop when there is no white ball seen by the camera
+            ROS_INFO_STREAM("Stop robot");
+            drive_bot(0, 0);
+        }
+    }
+
+    for (int i = 0; img.height * img_left < i < img.height * img_mid; i++)
+    {
+        // Identify if the pixel falls in the left, mid, or right side of image
+        if (img.data[i] == img.data[white_pixel])
+        {
+            ROS_INFO_STREAM("Ball detected");
 
             // pixel mid of image
             else if (img_left < img.step <= img_mid) 
@@ -47,6 +63,22 @@ void process_image_callback(const sensor_msgs::Image img)
                 // call drive_bot function and pass velocities
                 drive_bot(5, 0);
             }
+        }
+
+        else 
+        {
+            // Request a stop when there is no white ball seen by the camera
+            ROS_INFO_STREAM("Stop robot");
+            drive_bot(0, 0);
+        }
+    }
+
+    for (int i = 0; img.height * img_mid < i; i++)
+    {
+        // Identify if the pixel falls in the left, mid, or right side of image
+        if (img.data[i] == img.data[white_pixel])
+        {
+            ROS_INFO_STREAM("Ball detected");
 
             // pixel right of image
             else if (img_mid < img.step)
@@ -55,19 +87,15 @@ void process_image_callback(const sensor_msgs::Image img)
                 // call drive_bot function and pass velocities
                 drive_bot(0, -5);
             }
-
-            else
-            {
-                ROS_INFO_STREAM("Error");
-            }
-            
         }
-        // Request a stop when there is no white ball seen by the camera
-        ROS_INFO_STREAM("Stop robot");
-        drive_bot(0, 0);
-    }
-    
 
+         else 
+        {
+            // Request a stop when there is no white ball seen by the camera
+            ROS_INFO_STREAM("Stop robot");
+            drive_bot(0, 0);
+        }
+    }
 }
 
 int main(int argc, char** argv)
