@@ -25,20 +25,17 @@ void process_image_callback(const sensor_msgs::Image img)
     int img_left = img.step/3;
     int img_mid = 2*img.step / 3;
 
+    // pixel left of image
     for (int i = 0; i < img.height * img_left; i++)
     {
-        // Identify if the pixel falls in the left, mid, or right side of image
+        // Identify the pixel
         if (img.data[i] == img.data[white_pixel])
         {
             ROS_INFO_STREAM("Ball detected");
 
-            // pixel left of image
-            if (img.step <= img_left) 
-            {
-                ROS_INFO_STREAM("Move robot left");
-                // call drive_bot function and pass velocities
-                drive_bot(0, 5);
-            }
+            ROS_INFO_STREAM("Move robot left");
+            // call drive_bot function and pass velocities
+            drive_bot(0, 5);
         }
 
         else 
@@ -49,20 +46,17 @@ void process_image_callback(const sensor_msgs::Image img)
         }
     }
 
+    // pixel middle of image
     for (int i = 0; img.height * img_left < i < img.height * img_mid; i++)
     {
-        // Identify if the pixel falls in the left, mid, or right side of image
+        // Identify the pixel
         if (img.data[i] == img.data[white_pixel])
         {
             ROS_INFO_STREAM("Ball detected");
 
-            // pixel mid of image
-            else if (img_left < img.step <= img_mid) 
-            {
-                ROS_INFO_STREAM("Move robot forward");
-                // call drive_bot function and pass velocities
-                drive_bot(5, 0);
-            }
+            ROS_INFO_STREAM("Move robot forward");
+            // call drive_bot function and pass velocities
+            drive_bot(5, 0);
         }
 
         else 
@@ -73,20 +67,17 @@ void process_image_callback(const sensor_msgs::Image img)
         }
     }
 
+    // pixel right of image
     for (int i = 0; img.height * img_mid < i; i++)
     {
-        // Identify if the pixel falls in the left, mid, or right side of image
+        // Identify the pixel
         if (img.data[i] == img.data[white_pixel])
         {
             ROS_INFO_STREAM("Ball detected");
 
-            // pixel right of image
-            else if (img_mid < img.step)
-            {
-                ROS_INFO_STREAM("Move robot right");
-                // call drive_bot function and pass velocities
-                drive_bot(0, -5);
-            }
+            ROS_INFO_STREAM("Move robot right");
+            // call drive_bot function and pass velocities
+            drive_bot(0, -5);
         }
 
          else 
