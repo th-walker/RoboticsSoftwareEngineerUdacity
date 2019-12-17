@@ -10,10 +10,15 @@ void drive_bot(float lin_x, float ang_z)
 {
     // TODO: Request a service and pass the velocities to it to drive the robot
     ROS_INFO_STREAM("Passing velocities to drive robot");
+    
 
     ball_chaser::DriveToTarget srv;
     srv.request.linear_x = lin_x;
     srv.request.angular_z = ang_z;
+
+    // Error check
+    ROS_INFO_STREAM(lin_x);
+    ROS_INFO_STREAM(ang_z);
 
 }
 
@@ -35,14 +40,14 @@ void process_image_callback(const sensor_msgs::Image img)
 
             ROS_INFO_STREAM("Move robot left");
             // call drive_bot function and pass velocities
-            drive_bot(0, 5);
+            drive_bot(2, 5);
         }
 
         else 
         {
             // Request a stop when there is no white ball seen by the camera
             ROS_INFO_STREAM("Stop robot");
-            drive_bot(0, 0);
+            //drive_bot(0, 0);
         }
     }
 
