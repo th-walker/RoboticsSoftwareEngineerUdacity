@@ -1,5 +1,5 @@
 # RoboticsSoftwareEngineerUdacity
-Udacity Robotics Software Engineer Course
+[Udacity Robotics Software Engineer Course](https://www.udacity.com/course/robotics-software-engineer--nd209)
 
 A Nanodegree program from Udacity - explores 3 essential elements of robotics: perception, decision making, and actuation.
 
