@@ -8,7 +8,6 @@ ros::ServiceClient client;
 // This function calls the command_robot service to drive the robot in the specified direction
 void drive_bot(float lin_x, float ang_z)
 {
-    // TODO: Request a service and pass the velocities to it to drive the robot
     ROS_INFO_STREAM("Passing velocities to drive robot");
     
 
@@ -27,72 +26,35 @@ void process_image_callback(const sensor_msgs::Image img)
 {
 
     int white_pixel = 255;
-    int img_left = img.step/3;
-    int img_mid = 2*img.step / 3;
+    int move_left = 0;
+    int move_right = 0;
+    int move_forward = 0;
 
-    // pixel left of image
-    for (int i = 0; i < img.height * img_left; i++)
-    {
-        // Identify the pixel
-        if (img.data[i] == img.data[white_pixel])
-        {
-            ROS_INFO_STREAM("Ball detected");
-
-            ROS_INFO_STREAM("Move robot left");
-            // call drive_bot function and pass velocities
-            drive_bot(0.0, 0.5);
+  for (int i = 0; i < img.height * img.step; i+=3) {
+        int location = i % (img.width * 3) / 3;
+    	if(img.data[i] == white_pixel && img.data[i+1] == white_pixel && img.data[i+2] == white_pixel){
+          if(location <= 300){
+            move_left +=1;
+          }else if(location >= 600){
+            move_right +=1;
+          }else{
+            move_forward +=1;
+          }
         }
-
-        else 
-        {
-            // Request a stop when there is no white ball seen by the camera
-            ROS_INFO_STREAM("Stop robot");
-            drive_bot(0.0, 0.0);
-        }
+  }
+      
+    if(move_left > move_right && move_left > move_forward){
+      drive_bot(0.0, -0.5);
+    }else if(move_right > move_left && move_right > move_forward){
+      drive_bot(0.0, 0.5);
+    }else if(move_forward > move_left && move_forward > move_right){
+      drive_bot(0.5, 0.0);
+    }else{
+      drive_bot(0.0, 0.0);
     }
-
-    // pixel middle of image
-    for (int i = 0; img.height * img_left < i < img.height * img_mid; i++)
-    {
-        // Identify the pixel
-        if (img.data[i] == img.data[white_pixel])
-        {
-            ROS_INFO_STREAM("Ball detected");
-
-            ROS_INFO_STREAM("Move robot forward");
-            // call drive_bot function and pass velocities
-            drive_bot(0.5, 0.0);
-        }
-
-        else 
-        {
-            // Request a stop when there is no white ball seen by the camera
-            ROS_INFO_STREAM("Stop robot");
-            drive_bot(0.0, 0.0);
-        }
-    }
-
-    // pixel right of image
-    for (int i = 0; img.height * img_mid < i; i++)
-    {
-        // Identify the pixel
-        if (img.data[i] == img.data[white_pixel])
-        {
-            ROS_INFO_STREAM("Ball detected");
-
-            ROS_INFO_STREAM("Move robot right");
-            // call drive_bot function and pass velocities
-            drive_bot(0.0, -0.5);
-        }
-
-         else 
-        {
-            // Request a stop when there is no white ball seen by the camera
-            ROS_INFO_STREAM("Stop robot");
-            drive_bot(0.0, 0.0);
-        }
-    }
+    ros::Duration(3).sleep();
 }
+
 
 int main(int argc, char** argv)
 {
