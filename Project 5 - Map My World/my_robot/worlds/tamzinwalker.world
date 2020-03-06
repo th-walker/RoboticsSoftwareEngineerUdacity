@@ -1914,36 +1914,6 @@
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='table_marble'>
-        <pose frame=''>5.61874 -0.954294 0.648 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>5.61874 -0.954294 0.648 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='table_marble_0'>
-        <pose frame=''>5.61948 -4.33558 0.648 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>5.61948 -4.33558 0.648 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
-      <model name='table_marble_1'>
-        <pose frame=''>5.60942 -7.55828 0.648 0 -0 0</pose>
-        <scale>1 1 1</scale>
-        <link name='link'>
-          <pose frame=''>5.60942 -7.55828 0.648 0 -0 0</pose>
-          <velocity>0 0 0 0 -0 0</velocity>
-          <acceleration>0 0 0 0 -0 0</acceleration>
-          <wrench>0 0 0 0 -0 0</wrench>
-        </link>
-      </model>
       <light name='sun'>
         <pose frame=''>0 0 10 0 -0 0</pose>
       </light>
@@ -3870,141 +3840,6 @@
         <kinematic>0</kinematic>
       </link>
       <pose frame=''>0.579247 7.117 0 0 -0 0</pose>
-    </model>
-    <model name='table_marble'>
-      <static>1</static>
-      <pose frame=''>5.61874 -0.954294 0.648 0 -0 0</pose>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>model:///table_marble/meshes/table_lightmap.dae</uri>
-              <scale>0.25 0.25 0.25</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://table_marble/meshes/table_lightmap.dae</uri>
-              <scale>0.25 0.25 0.25</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://table_marble/materials/scripts</uri>
-              <uri>model://table_marble/materials/textures</uri>
-              <name>Table/Marble_Lightmap</name>
-            </script>
-            <lighting>0</lighting>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='table_marble_0'>
-      <static>1</static>
-      <pose frame=''>5.61948 -4.79477 0.648 0 -0 0</pose>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>model:///table_marble/meshes/table_lightmap.dae</uri>
-              <scale>0.25 0.25 0.25</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://table_marble/meshes/table_lightmap.dae</uri>
-              <scale>0.25 0.25 0.25</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://table_marble/materials/scripts</uri>
-              <uri>model://table_marble/materials/textures</uri>
-              <name>Table/Marble_Lightmap</name>
-            </script>
-            <lighting>0</lighting>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='table_marble_1'>
-      <static>1</static>
-      <pose frame=''>5.60942 -7.55828 0.648 0 -0 0</pose>
-      <link name='link'>
-        <collision name='collision'>
-          <geometry>
-            <mesh>
-              <uri>model:///table_marble/meshes/table_lightmap.dae</uri>
-              <scale>0.25 0.25 0.25</scale>
-            </mesh>
-          </geometry>
-          <max_contacts>10</max_contacts>
-          <surface>
-            <contact>
-              <ode/>
-            </contact>
-            <bounce/>
-            <friction>
-              <torsional>
-                <ode/>
-              </torsional>
-              <ode/>
-            </friction>
-          </surface>
-        </collision>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://table_marble/meshes/table_lightmap.dae</uri>
-              <scale>0.25 0.25 0.25</scale>
-            </mesh>
-          </geometry>
-          <material>
-            <script>
-              <uri>model://table_marble/materials/scripts</uri>
-              <uri>model://table_marble/materials/textures</uri>
-              <name>Table/Marble_Lightmap</name>
-            </script>
-            <lighting>0</lighting>
-          </material>
-        </visual>
-        <self_collide>0</self_collide>
-        <kinematic>0</kinematic>
-      </link>
     </model>
     <model name='cafe_table'>
       <static>1</static>
@@ -6052,6 +5887,7 @@
       <allow_auto_disable>1</allow_auto_disable>
       <pose frame=''>-2.86474 -1.69552 0 0 -0 0</pose>
     </model>
+    
     <model name='my_ball'>
       <link name='link'>
         <pose frame=''>0 0 0 0 -0 0</pose>
